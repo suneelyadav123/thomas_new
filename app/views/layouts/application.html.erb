@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ThomasLogistic</title>
+    <!-- CSS -->
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container-fluid display-table" style="min-height:650px;">
+      <div class="row display-table-row">
+        <div class="col-md-12 pl-0-imp">
+          <%c = params[:controller]%>
+          <%a = params[:action]%>
+          <div class="col-md-2 h-100p pr-0-imp" id="navigation">
+            <%= render "layouts/left_nav_menu" %>
+          </div>
+          <div class="col-md-10 col-sm-11 new-custom-select-box mt-20 min-h-700 pr-0">
+            <div class="container-fluid col-md-12 pr-0">
+              <%= bootstrap_flash %>
+              <%= yield%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
+</html>

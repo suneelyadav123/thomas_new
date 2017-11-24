@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12 pl-0 pr-0">
+    <div class="col-md-6 pl-0">
+      <h1 class="pull-left">Manage Users</h1>
+    </div>
+    <div class="col-md-6 mt-10">
+      <%= link_to "New User", new_user_path , class: "btn btn-primary pull-right" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered sortable">
+      <thead>
+        <th>Name</th>
+        <th> Email</th>
+        <th> Role </th>
+        <th> Action </th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td> <%= user.name %> </td>
+            <td> <%= user.email %> </td>
+            <td> <%= user.role %> </td>
+            <td>
+              <%= link_to "Edit", edit_user_path(user) %> | <%= link_to "Delete", '#',:id => user.id, :class => 'delete text-danger',  "data-toggle" => "modal", 'data-target' => '#delete-user', 'data-id' => user.id %>
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="modal fade" id="delete-user" data-backdrop="static" data-keyboard="false" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <button type="button" class="close custom-close-icon" data-dismiss="modal">×</button>
+        <h5 class="modal-title">Alert</h5>
+      </div>
+      <div class="modal-body">
+        <i class="mdi mdi-alert fs-14"></i> Are you sure to delete this user?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" id="deleteDriver"> Ok </button>
+        <button type="button" class="btn btn-cancel btn-xs" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

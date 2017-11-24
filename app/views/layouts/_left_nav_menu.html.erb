@@ -1,0 +1,105 @@
+<div class="navi">
+  <ul>
+    <li>
+      <%= link_to home_index_path do %>
+      <div class="mt-10">
+        <span class="sprite_img ic-home display-inline-block"></span>
+        <span>Home</span>
+      </div>
+    <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <div>
+          <span class="sprite_img ic-customers display-inline-block"></span>
+          <span>Incoming</span>
+        </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <div>
+          <span class="sprite_img ic-order display-inline-block"></span>
+          <span>List Bag</span>
+        </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <div>
+          <span class="sprite_img ic-report display-inline-block"></span>
+          <span>Dispatch</span>
+        </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <div>
+          <span class="sprite_img ic-config display-inline-block"></span>
+          <span>Return Bagging</span>
+        </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to users_path do %>
+        <div>
+          <span class="sprite_img ic-customers display-inline-block"></span>
+          <span>Cash Rcon</span>
+        </div>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "#" do %>
+        <div>
+          <span class="sprite_img ic-report display-inline-block"></span>
+          <span>Report</span>
+        </div>
+      <% end %>
+    </li>
+    <li data-toggle="collapse" data-target="#admin-sidemenu" class="collapsed">
+      <%= link_to "javascript::void;" do %>
+        <div>
+          <span class="sprite_img ic-config display-inline-block"></span>
+          <span>Admin</span>
+        </div>
+      <% end %>
+    </li>
+    <ul class="collapse nav-side-menu" id="admin-sidemenu">
+      <li>
+        <%= link_to users_path do %>
+          <div>
+            <span class="sprite_img ic-config display-inline-block"></span>
+            <span>Manage Users</span>
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+          <div>
+            <span class="sprite_img ic-config display-inline-block"></span>
+            <span>Manage Vehicles</span>
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </ul>
+  <ul class="bottom-nav">
+    <hr class="border">
+    <li class="inactive">
+      <a href="javascript:void(0);" class="no-hover">
+        <div>
+         <div class="sprite_img ic-admin display-inline-block pull-left"></div>
+         <div><%= current_user.name %></div>
+        </div>
+      </a>
+    </li>
+    <li class="inactive">
+      <%= link_to destroy_user_session_path, :method => :delete do %>
+        <div>
+          <span class="sprite_img ic-logout display-inline-block"></span>
+          <span>Logout</span>
+        </div>
+      <% end %>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,75 @@
+<%= form_for(user, html: {class: "form"}) do |f| %>
+  <div class="panel panel-default custom-select-box">
+  <div class="panel-heading"><h3 class="panel-title text-transform-none">Details</h3></div>
+    <div class="panel-body">
+      <div class="row row-flex row-flex-wrap">
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Name</label>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Email<span class="red_asterisk">*</span></label>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <%= f.label :role, class: "control-label" %>
+            <%= f.select :role, Hash[User.roles.map{|k,v| [k.to_s.titleize,k]}],{}, {class: 'form-control'} %>
+          </div>
+        </div>
+      
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Password<span class="red_asterisk">*</span></label>
+            <%= f.password_field :password, class: "form-control", placeholder: "******" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Password Confirmation<span class="red_asterisk">*</span></label>
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "******" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col" style="height:90px;">
+          <div class="form-group">
+            <label class='control-label'>Active<span class="red_asterisk">*</span></label>
+            <div class="mt-10">
+              <%= f.radio_button :active, 1, checked: true %> <span>&nbsp;Active&nbsp;&nbsp;</span>
+              <%= f.radio_button :active, 0, checked: !true %> <span>&nbsp;Inactive</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Address<span class="red_asterisk">*</span></label>
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>State<span class="red_asterisk">*</span></label>
+            <%= f.text_field :state, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4 flex-col">
+          <div class="form-group">
+            <label class='control-label'>Pin code<span class="red_asterisk">*</span></label>
+            <%= f.text_field :pincode, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col-md-12">
+      <div class="actions pull-right">
+        <%= f.submit "Save", :class=> "btn btn-primary" %>
+        <%= link_to "Cancel", users_path, :class => 'btn btn-cancel ml-5' %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -44,12 +44,6 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: thomas_logistic_production
-  username: thomas_logistic
-  password: <%= ENV['THOMAS_LOGISTIC_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+#

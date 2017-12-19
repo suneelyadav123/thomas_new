@@ -17,22 +17,39 @@
   </head>
 
   <body>
-    <div class="container-fluid display-table" style="min-height:650px;">
-      <div class="row display-table-row">
-        <div class="col-md-12 pl-0-imp">
-          <%c = params[:controller]%>
-          <%a = params[:action]%>
-          <div class="col-md-2 h-100p pr-0-imp" id="navigation">
-            <%= render "layouts/left_nav_menu" %>
-          </div>
-          <div class="col-md-10 col-sm-11 new-custom-select-box mt-20 min-h-700 pr-0">
-            <div class="container-fluid col-md-12 pr-0">
-              <%= bootstrap_flash %>
-              <%= yield%>
-            </div>
-          </div>
+    <div class="container-fluid" style="min-height:650px;">
+      <div class="row">
+        <div class="col-md-12 p-lr-0">
+          <table width="100%" class="table-layout">
+            <%c = params[:controller]%>
+            <%a = params[:action]%>
+            <tr>
+              <% if current_user.email == "admin@dispatchtrack.com" %>
+                <%= render "layouts/header" %>
+                <td class="table-left-nav">
+                  <%= render "layouts/admin_side_menu" %>
+                </td>
+              <% else %>
+                <td>
+                  <%= render "layouts/left_nav_menu" %>  
+                </td>
+              <% end %>  
+              <td class="table-right-body">
+                <div class="row" style="margin-top:-15px;">
+                  <div class="panel">
+                    <div class="panel-body" style="padding:2px;">
+                      <h4 style="margin-left:13px;">Welcome! <%= current_user.name %></h2>
+                    </div>
+                  </div>
+                </div>
+                <%= bootstrap_flash %>
+                <%=yield%>
+              </td>  
+            </tr>
+          </table>
         </div>
       </div>
-    </div>  
+    </div> 
   </body>
+  <%= render partial: "layouts/footer" %>
 </html>

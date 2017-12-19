@@ -1,0 +1,39 @@
+<div class="navi">
+  <ul>
+    <li>
+      <%= link_to homes_path do %>
+        <div class="mt-10">
+          <span class="sprite_img ic-home display-inline-block"></span>
+          <span>DashBoard</span>
+        </div>
+      <% end %>
+    </li>
+    
+    <li data-toggle="collapse" data-target="#admin-sidemenu" class="collapsed">
+      <%= link_to "javascript::void;" do %>
+        <div>
+          <span class="sprite_img ic-config display-inline-block"></span>
+          <span>Admin</span>
+        </div>
+      <% end %>
+    </li>
+    <ul class="collapse nav-side-menu" id="admin-sidemenu">
+      <li>
+        <%= link_to users_path do %>
+          <div>
+            <span class="sprite_img ic-config display-inline-block"></span>
+            <span>Manage Users</span>
+          </div>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to "#" do %>
+          <div>
+            <span class="sprite_img ic-config display-inline-block"></span>
+            <span>Manage Vehicles</span>
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </ul>
+</div>

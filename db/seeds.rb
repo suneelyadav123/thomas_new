@@ -9,3 +9,4 @@ User.create!(name: 'Suneel', email: 'suneel@thomaslogistics.com', password: 'tho
 User.create!(name: 'Hari Krishna', email: 'hari@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123',role: 'manager')
 User.create!(name: 'John Thomas', email: 'john@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'manager')
 User.create!(name: 'Bhavani',email: 'bhavani@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'manager')
+User.create!(name: 'Admin',email: 'admin@dispatchtrack.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'manager')

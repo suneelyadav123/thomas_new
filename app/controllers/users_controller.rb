@@ -29,8 +29,18 @@ class UsersController < ApplicationController
   end
 
   def update
-  
+    @user = User.find_by_id params[:id]
+    
+    respond_to do |format|
+      if @user.update_attributes(user_params)
+        format.html { redirect_to users_path, :notice => 'User was successfully updated.' }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @user.errors.full_messages.to_sentence, :status => :unprocessable_entity }
+      end
+    end
   end
+
   def show
 
   end
@@ -43,6 +53,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:name, :email, :password , :role,:password_confirmation,:active)
+    params.require(:user).permit(:name, :email, :password, :role, :password_confirmation, :active, :address, :state, :pincode)
   end
 end

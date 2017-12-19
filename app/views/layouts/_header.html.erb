@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default bg-green" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header mt-10">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#" style="color: #fff;">Thomas Logistics</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="col-sm-3 col-md-3" style="padding-left:500px;">
+      <form class="navbar-form" role="search">
+        <div class="input-group">
+          <input type="search" class="search-box" placeholder="Search">
+        </div>
+      </form> 
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <img src="https://dmlzklevomxxt.cloudfront.net/web/images/V1/img-allcontacts.png" class="img-circle" style="height:40px;">
+        </a>  
+        <ul class="dropdown-menu">
+          <li class="user-settings">
+            <a href="#"><i class="mdi mdi-account-settings"></i> Change Password</a>
+          </li>
+          <li class="inactive">
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+              <div>
+                <span class="sprite_img ic-logout display-inline-block"></span>
+                <span>Logout</span>
+              </div>
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>

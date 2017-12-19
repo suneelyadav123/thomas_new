@@ -17,4 +17,5 @@
 //= require jquery-ui.min
 //= require jquery-migrate-1.2.1.min
 //= require highcharts
+//= require jquery.circliful.min
 //= require_tree .

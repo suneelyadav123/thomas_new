@@ -1,0 +1,18 @@
+<footer class="footer well mb-0-imp b-radius-0">
+  <div class="copyright-info text-center">
+    <span class="text-muted">
+      &copy; Thomas Logistics <%= Date.today.year %>.
+      <% if current_user %>
+        &nbsp;|&nbsp;
+        <a href="/eula" class="bluelink"> Termers of Service</a>
+        &nbsp;|&nbsp;
+        <a href="/privacy" class="bluelink">Privacy Policy</a>
+        &nbsp;|&nbsp;
+        <a href="/support" class="bluelink">Support</a>
+        &nbsp;|&nbsp;
+        <a href="/docs/index.html" target="_blank" class="bluelink">Help</a>
+      <% end %>
+    </span>
+  </div>
+  <div class="clearfix"></div>
+</footer>

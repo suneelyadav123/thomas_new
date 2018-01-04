@@ -1,5 +1,7 @@
-<% if current_user.email == "admin@dispatchtrack.com" %>
+<% if current_user.role == "manager" %>
   <%= render partial: "manager_dashboard" %>
-<% else %>
+<% elsif current_user.role == "agent" %>
   <%= render partial: "agent_dashboard" %>
+<% elsif current_user.role == "client_user" %>
+  <%= render partial: "client_dashboard" %>
 <% end %>  

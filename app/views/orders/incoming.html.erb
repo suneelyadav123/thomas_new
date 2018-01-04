@@ -1,0 +1,67 @@
+<div class="alert alert-danger display-none" id ="warning_notice">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Warning!</strong> <span class="notice_msg"></span>
+</div>
+<div class="alert alert-success display-none" id ="success_notice">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> <span class="notice_msg"></span>
+</div>
+<div class="col-md-12">
+    <h1>Scan Incoming Orders</h1>
+</div>
+<div class="col-md-2 pr-0">
+  <div class="search_a form-group">
+    <input type="text" class="search_fields form-control search-input" placeholder="- Order # -" id="order_number" name="awb_number">
+    <i class=""></i>
+  </div>
+</div>
+<table class="table table-responsive sortable">
+  <tr>
+    <th> Sl No</th>
+    <th>Order Awb Number</th>
+    <th>Customer Name</th>
+    <th> city</th>
+    <th> client Name</th>
+    <th> Pincode </th>
+  </tr>
+  <tbody>
+    <% @orders.each_with_index  do |order, index| %>
+      <tr>
+        <td> <%= index +1 %> </td>
+        <td> <%= order.awb_num %> </td>
+        <td> <%= order.customer_name %> </td>
+        <td> <%= order.city %> </td>
+        <td> <%= order.user.name %> </td>
+        <td> <%= order.pincode %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script type="text/javascript">
+  $('#order_number').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+      var awb_num = $("#order_number").val();
+        $.ajax({
+          url: '/orders/incoming',
+          type: 'get',
+          data: {'awb_num':awb_num},
+          dataType: 'json',
+          success: function(res){
+            if (res['error']) {
+              $("#warning_notice").show();
+              $(".notice_msg").html(res['error']);
+            }
+            else {
+              var data = res['order'];
+              var client_name = res['client_name'];
+              var index = $('table.table tbody tr').length;
+              $("table.table tbody tr:last").after("<tr><td>" + index + "</td><td>" + data['awb_num'] + "</td><td>" + data['customer_name'] + "</td><td>" + data['city'] + "</td><td>" + client_name + "</td><td>" + data['pincode'] + "</td></tr>");
+              $("#success_notice").show();
+              $(".notice_msg").html(res['notice']);
+            }
+            $("#order_number").val("");
+          }
+        });
+    }
+  });
+</script>

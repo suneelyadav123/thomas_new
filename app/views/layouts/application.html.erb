@@ -24,24 +24,30 @@
             <%c = params[:controller]%>
             <%a = params[:action]%>
             <tr>
-              <% if current_user.email == "admin@dispatchtrack.com" %>
-                <%= render "layouts/header" %>
+              <%= render "layouts/header" %>
+              <% if current_user.role == "manager" %>
                 <td class="table-left-nav">
                   <%= render "layouts/admin_side_menu" %>
                 </td>
-              <% else %>
-                <td>
+              <% elsif current_user.role == "agent" || current_user.role == "wms_manager"  %>
+                <td class="table-left-nav">
                   <%= render "layouts/left_nav_menu" %>  
                 </td>
+              <% elsif current_user.role == "client_user" %>
+                <td class="table-left-nav">
+                  <%= render "layouts/client_left_nav" %> 
+                </td>  
               <% end %>  
               <td class="table-right-body">
-                <div class="row" style="margin-top:-15px;">
-                  <div class="panel">
-                    <div class="panel-body" style="padding:2px;">
-                      <h4 style="margin-left:13px;">Welcome! <%= current_user.name %></h2>
+                <% if c == homes_url %>
+                  <div class="row" style="margin-top:-15px;">
+                    <div class="panel">
+                      <div class="panel-body" style="padding:2px;">
+                        <h4 style="margin-left:13px;">Welcome! <%= current_user.name %></h2>
+                      </div>
                     </div>
                   </div>
-                </div>
+                <% end %>  
                 <%= bootstrap_flash %>
                 <%=yield%>
               </td>  

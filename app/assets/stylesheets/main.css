@@ -678,7 +678,7 @@ tbody td {
   bottom: 15px;
   margin-bottom: 41px;
   position: absolute;
-  width: 100%;
+  width: 17.2%;
 }
 .navbar-fixed-top {
   height: 60px;
@@ -748,4 +748,40 @@ tbody td {
   padding: 12px 0;
   font-size: 0.85em;
   color: #999;
+}
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.file-upload-btn {
+  border: solid 1px #d8dde6;
+  background-color: white;
+  padding: 10px 53px;
+  color: #3870de;
+  font-size: 14px;
+  font-weight: 900;
+  border-radius: 3px;
+}
+
+.upload-btn-wrapper input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.w-180 {
+  width: 180px;
+}
+.csv-well {
+  background-color: #fafafa !important;
+  min-height: 400px;
+  padding-top: 80px;
+}
+
+/* Display None , Inline, Inblock */
+.display-none {
+  display: none;
 }

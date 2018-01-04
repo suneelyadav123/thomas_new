@@ -21,10 +21,13 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :role, null: false
       t.string   :name, null: false
       t.boolean  :active
-      t.string   :address
+      t.string   :address_line1
+      t.string   :address_line2
+      t.string   :city
       t.string   :state
       t.string   :pincode
-
+      t.string   :branch_code
+      t.string   :branch_name
 
       ## Confirmable
       # t.string   :confirmation_token

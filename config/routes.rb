@@ -7,4 +7,13 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   resources :homes
   resources :users
+  resources :vehicles
+
+  resources :orders do
+    collection { 
+      post :import
+      get  :orders_search 
+      get :incoming
+    }
+  end
 end

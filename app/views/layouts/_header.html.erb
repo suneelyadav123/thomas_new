@@ -15,7 +15,8 @@
     <div class="col-sm-3 col-md-3" style="padding-left:500px;">
       <form class="navbar-form" role="search">
         <div class="input-group">
-          <input type="search" class="search-box" placeholder="Search">
+          <input type="search" class="search-box" placeholder="Search" id="ordersSearch">
+          <input type="button" class="search-button" style="display:none;">
         </div>
       </form> 
     </div>
@@ -42,3 +43,21 @@
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
+
+<script type="text/javascript">
+  window.setTimeout(function () {
+    $(".alert-success, .alert-danger").alert('close'); 
+  }, 7000);
+
+  $('#ordersSearch').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+      var awd_num = $("#ordersSearch").val();
+        $.ajax({
+          url: '/orders/orders_search',
+          type: 'get',
+          data: {'awd_num':awd_num},
+          contentType: 'json'
+        });
+    }
+  });
+</script>

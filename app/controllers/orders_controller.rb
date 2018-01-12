@@ -43,4 +43,15 @@ class OrdersController < ApplicationController
     end  
   end
 
+  def add_orders_to_bag
+    @bag = Bag.find_by_number params[:number]
+    order_ids = params[:order_ids].split(/,/)
+    order_ids.each do |order|
+      order = Order.find_by_id order
+      order.bag_id = @bag.id
+      order.save
+     end 
+    redirect_to incoming_bags_path, notice: "successfully added orders to the bag #{@bag.number}"
+  end
+
 end

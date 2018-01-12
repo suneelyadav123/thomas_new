@@ -1,0 +1,118 @@
+<div class="alert alert-danger display-none" id ="warning_notice">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Warning!</strong> <span class="notice_msg"></span>
+</div>
+<div class="alert alert-success display-none" id ="success_notice">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Success!</strong> <span class="notice_msg"></span>
+</div>
+<div class="col-md-12">
+    <h1>Scan Incoming Orders</h1>
+</div>
+<div class="col-md-2 pr-0">
+  <div class="search_a form-group">
+    <input type="text" class="search_fields form-control search-input" placeholder="- Order # -" id="order_number" name="awb_number">
+    <i class=""></i>
+  </div>
+</div>
+
+<%= form_with url: add_orders_to_bag_orders_path do |f| %>
+  <table class="table table-responsive sortable">
+    <tr>
+      <th> Sl No</th>
+      <th>Order Awb Number</th>
+      <th>Customer Name</th>
+      <th> city</th>
+      <th> client Name</th>
+      <th> Pincode </th>
+    </tr>
+    <% if @orders.present? %>
+      <tbody>
+        <% @orders.each_with_index do |order, index| %>
+          <tr> 
+            <td data-id = <%= order.id %> > <%= index + 1 %></td>
+            <td> <%= order.awb_num %></td>
+            <td> <%= order.customer_name%></td>
+            <td> <%= order.city %></td>
+            <td> <%= order.user.name %></td>
+            <td> <%= order.pincode %> </td>
+            <%= f.hidden_field :order_ids, value: @order_ids.join(','), class: "order_ids" %>
+          </tr>
+        <% end %>  
+       </tbody> 
+    <% end %>   
+  </table>
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-primary  pull-right" id="add_to_bag" href="javascript:void(0)"> Add To Bag</a>
+    </div>
+  </div> 
+
+  <div class="modal fade" id="bag-popup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header bg-primary">
+          <button type="button" class="close custom-close-icon" data-dismiss="modal">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title"> Scan Bag/Enter Bag Number</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Bag Number<span class="red_asterisk">*</span>:</label>
+              <div class="col-sm-7">
+                <%= f.text_field :number, class: "form-control search-input" %>
+                
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label class="col-sm-3 control-label">Select Vehicle<span class="red_asterisk">*</span>:</label>
+              <div class="col-sm-7">
+                <%#= f.select "vehicle_id", options_from_collection_for_select(@vehicles, :id, :driver_name),{}, {class: "form-control", prompt: "Select Vehicle"}  %>
+              </div>
+            </div> -->
+          </div>    
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Create Bag" , class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>  
+<script type="text/javascript">
+  $("#add_to_bag").click(function(){
+    $("#bag-popup").modal('show');
+  });
+
+  $('#order_number').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+      var awb_num = $("#order_number").val();
+        $.ajax({
+          url: '/bags/incoming',
+          type: 'get',
+          data: {'awb_num':awb_num},
+          dataType: 'json',
+          success: function(res){
+            if (res['error']) {
+              $("#warning_notice").show();
+              $(".notice_msg").html(res['error']);
+            }
+            else {
+              var data = res['order'];
+              var client_name = res['client_name'];
+              var index = $('table.table tbody tr').length;
+              $("table.table tbody tr:last").after("<tr><td>" + index + "</td><td>" + data['awb_num'] + "</td><td>" + data['customer_name'] + "</td><td>" + data['city'] + "</td><td>" + client_name + "</td><td>" + data['pincode'] + "</td></tr>");
+              $("#order_ids").val();
+              $("#success_notice").show();
+              $(".notice_msg").html(res['notice']);
+            }
+            $("#order_number").val("");
+          }
+        });
+    }
+  });
+</script>

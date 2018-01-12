@@ -12,3 +12,5 @@ User.create!(name: 'Agent',email: 'agent@thomaslogistics.com', password: 'thomas
 User.create!(name: 'Hari',email: 'hari@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'wms_manager')
 User.create!(name: 'Bhavani',email: 'bhavani@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'wms_manager')
 User.create!(name: 'Sampath',email: 'sampath@thomaslogistics.com', password: 'thomas123', password_confirmation: 'thomas123', role: 'wms_manager')
+
+puts "Success"

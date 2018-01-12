@@ -21,6 +21,9 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :scanned_by
       t.boolean :warehouse_status
       t.datetime :scanned_date
+      t.boolean :bag_scan_status
+      t.integer :bag_id
+      t.integer :added_to_bag_by
 
       t.timestamps
     end

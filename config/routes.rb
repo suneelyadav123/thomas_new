@@ -14,6 +14,15 @@ Rails.application.routes.draw do
       post :import
       get  :orders_search 
       get :incoming
+      post :add_orders_to_bag
     }
   end
+
+  resources :bags do 
+    collection {
+      get :incoming
+    }
+  end
+  resources :schedules
+  
 end

@@ -6,5 +6,7 @@ class User < ApplicationRecord
 
   has_many :vehicles
   has_many :orders
-  
+  has_many :bags
+  has_many :schedules
+
 end

@@ -25,16 +25,6 @@
     <th> Pincode </th>
   </tr>
   <tbody>
-    <% @orders.each_with_index  do |order, index| %>
-      <tr>
-        <td> <%= index +1 %> </td>
-        <td> <%= order.awb_num %> </td>
-        <td> <%= order.customer_name %> </td>
-        <td> <%= order.city %> </td>
-        <td> <%= order.user.name %> </td>
-        <td> <%= order.pincode %> </td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 <script type="text/javascript">
